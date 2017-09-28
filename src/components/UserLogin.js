@@ -16,7 +16,22 @@ export default class UserLogin extends React.Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
-    fetch("http://localhost:3000/users/new")
+    fetch("http://localhost:3000/users", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: this.state.username,
+        password: this.state.password
+      })
+    }).then(response => response.json())
+    .then((userInfo) => {
+      debugger
+      this.props.handleLogin(userInfo)
+      //does not need to take in an argument, but Joe insisted
+    })
+
     console.log(this.state.username, this.state.password)
   }
   render(){

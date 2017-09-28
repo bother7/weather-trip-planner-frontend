@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
 import TripContainer from './components/TripContainer'
 import UserLogin from './components/UserLogin'
+import UserSignUp from './components/UserSignUp'
 import './App.css';
-import {Route} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
 
 class App extends Component {
   state = {
     loggedIn: false,
   }
 
-  handleLogin = (event) => {
-    console.log("login successful")
+  handleLogin = (userInfo) => {
+    console.log("steal", userInfo)
     this.setState({loggedIn: true})
   }
-  
+
   render() {
     // if (!this.state.loggedIn) {
       return (
         <div>
-        <UserLogin handleLogin={this.handleLogin}/>
-        <Route path="/trips" render = {(props) => {return <TripContainer />}} />
+          <Route path="/signup" render = {(props) => { return <UserSignUp handleLogin={this.handleLogin} {...props}/>}} />
+          <Link to='/signup' > Link to sign up </Link>
+          <UserLogin handleLogin={this.handleLogin}/>
+          <Route path="/trips" render = {(props) => {return <TripContainer />}} />
         </div>
       );
     // } else {
