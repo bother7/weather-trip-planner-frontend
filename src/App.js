@@ -3,20 +3,33 @@ import TripContainer from './components/TripContainer'
 import UserLogin from './components/UserLogin'
 import UserSignUp from './components/UserSignUp'
 import './App.css';
-import {Route, Link} from 'react-router-dom'
+import {Route, Link, Redirect} from 'react-router-dom'
 
 class App extends Component {
   state = {
     loggedIn: false,
+    user_id: null,
+    username: null,
+    name: null
   }
 
   handleLogin = (userInfo) => {
-    console.log("steal", userInfo)
-    this.setState({loggedIn: true})
+    this.setState({loggedIn: true, user_id: userInfo.id, username: userInfo.username, name: userInfo.name})
+  }
+
+  signOut = (event) => {
+    event.preventDefault()
+    this.setState({
+      loggedIn: false,
+      user_id: null,
+      username: null,
+      name: null
+    })
   }
 
   render() {
-    // if (!this.state.loggedIn) {
+    console.log(this.state)
+    if (!this.state.loggedIn) {
       return (
         <div>
           <Route path="/signup" render = {(props) => { return <UserSignUp handleLogin={this.handleLogin} {...props}/>}} />
@@ -25,13 +38,15 @@ class App extends Component {
           <Route path="/trips" render = {(props) => {return <TripContainer />}} />
         </div>
       );
-    // } else {
-    //   return (
-    //     <div>
-    //     <Route path='/trips' render = {(props) => {<TripContainer />}} />
-    //     </div>
-    //   )
-    // }
+    } else {
+      return (
+        <div>
+        <button onClick={this.signOut}>Sign Out {this.state.name}</button>
+        {/* <Route path="/trips" render = {(props) => {return <TripContainer />}} /> */}
+        <TripContainer user_id={this.state.user_id}/>
+        </div>
+      )
+    }
   }
 }
 
