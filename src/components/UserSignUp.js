@@ -29,7 +29,7 @@ export default class UserSignUp extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
     if(this.checkPasswords()) {
-      fetch("http://localhost:3000/users", {
+      fetch("http://localhost:3000/api/v1/users", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -62,11 +62,11 @@ export default class UserSignUp extends React.Component {
         <input type="text" name="name" onChange={this.changeUserName} value={this.state.username}/>
       </label>
       <label>
-        Passvurd:
+        Password:
         <input type="password" name="name" onChange={this.changePassword} value={this.state.password}/>
       </label>
       <label>
-        Confirm Passvurd:
+        Confirm Password:
         <input type="password" name="name" onChange={this.changeConfirmationPassword} value={this.state.confirmPassword}/>
       </label>
         <input type="submit" value="Submit" />

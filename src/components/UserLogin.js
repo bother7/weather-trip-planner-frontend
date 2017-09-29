@@ -16,7 +16,7 @@ export default class UserLogin extends React.Component {
   }
   handleSubmit = (event) => {
     event.preventDefault()
-    fetch("http://localhost:3000/login", {
+    fetch("http://localhost:3000/api/v1/login", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -27,8 +27,8 @@ export default class UserLogin extends React.Component {
       })
     }).then(response => response.json())
     .then((userInfo) => {
-      return this.props.handleLogin(userInfo)
-
+      this.props.handleLogin(userInfo)
+      return this.props.history.push('/trips')
       //does not need to take in an argument, but Joe insisted
     })
 
@@ -41,7 +41,7 @@ export default class UserLogin extends React.Component {
       <input type="text" name="name" onChange={this.changeName} value={this.state.username}/>
       </label>
       <label>
-      Passvurd:
+      Password:
       <input type="password" name="name" onChange={this.changePassword} value={this.state.password}/>
       </label>
       <input type="submit" value="Submit" />

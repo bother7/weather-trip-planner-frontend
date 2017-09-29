@@ -45,11 +45,11 @@ class App extends Component {
         </div>
       );
     } else {
+      console.log(this.state)
       return (
         <div>
         <button onClick={this.signOut}>Sign Out {this.state.name}</button>
-        {/* <Route path="/trips" render = {(props) => {return <TripContainer />}} /> */}
-        <TripContainer user_id={this.state.user_id}/>
+        <Route path="/trips" render = {(props) => {return <TripContainer user_id={this.state.user_id}/>}} />
         </div>
       )
     }
