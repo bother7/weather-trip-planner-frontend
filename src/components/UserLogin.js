@@ -27,6 +27,7 @@ export default class UserLogin extends React.Component {
       })
     }).then(response => response.json())
     .then((userInfo) => {
+      localStorage.setItem('user_id', userInfo.id)
       this.props.handleLogin(userInfo)
       return this.props.history.push('/trips')
       //does not need to take in an argument, but Joe insisted

@@ -10,7 +10,15 @@ const TripForm = (props) => {
     Location:
     <input type="text" name="name" onChange={props.changeLocation} value={props.location}/>
     </label>
-          <input type="submit" value="Submit" />
+    <label>
+    Start Date:
+    <input type="date" name="start_date"/>
+    </label>
+    <label>
+    End Date:
+    <input type="date" name="end_date"/>
+    </label>
+    <input type="submit" value="Submit" />
   </form>)
 
 }

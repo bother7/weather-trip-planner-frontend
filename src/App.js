@@ -8,9 +8,10 @@ import {Route, Link, Redirect} from 'react-router-dom'
 class App extends Component {
   state = {
     loggedIn: false,
-    user_id: null,
+    user_id: localStorage.getItem('user_id'),
     username: null,
-    name: null
+    name: null,
+    trips: []
   }
 
   handleLogin = (userInfo) => {
@@ -24,6 +25,8 @@ class App extends Component {
 
   signOut = (event) => {
     event.preventDefault()
+    localStorage.removeItem('user_id')
+    //replace with jwt token later when we have jwt tokens, as of now we don't have jwt tokens in the "tim was here" -commit.
     this.setState({
       loggedIn: false,
       user_id: null,
@@ -32,9 +35,11 @@ class App extends Component {
     })
   }
 
+
+
   render() {
     console.log(this.state)
-    if (!this.state.loggedIn) {
+
       return (
         <div>
           <Route path="/signup" render = {(props) => { return <UserSignUp handleLogin={this.handleLogin} {...props}/>}} />
@@ -44,15 +49,6 @@ class App extends Component {
           <Route path="/trips" render = {(props) => {return <TripContainer />}} />
         </div>
       );
-    } else {
-      console.log(this.state)
-      return (
-        <div>
-        <button onClick={this.signOut}>Sign Out {this.state.name}</button>
-        <Route path="/trips" render = {(props) => {return <TripContainer user_id={this.state.user_id}/>}} />
-        </div>
-      )
-    }
   }
 }
 
