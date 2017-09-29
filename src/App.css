@@ -29,7 +29,7 @@
 
 
 .marquee {
-  height: 25px;
+  height: 50px;
   width: 800px;
 
   overflow: hidden;
@@ -39,7 +39,7 @@
 .marquee div {
   display: block;
   width: 200%;
-  height: 30px;
+  height: 50px;
 
   position: absolute;
   overflow: hidden;
@@ -50,6 +50,8 @@
 .marquee span {
   float: left;
   width: 200%;
+  height: 45px;
+  font-size: 40px;
 }
 
 @keyframes marquee {

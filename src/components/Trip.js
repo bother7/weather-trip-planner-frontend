@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Trip = (props) => {
-  return (<div> kenny sucks </div>)
+  return (<div> {props.name} </div>)
 }
 
 export default Trip
