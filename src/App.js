@@ -14,7 +14,12 @@ class App extends Component {
   }
 
   handleLogin = (userInfo) => {
-    this.setState({loggedIn: true, user_id: userInfo.id, username: userInfo.username, name: userInfo.name})
+    this.setState({
+      loggedIn: true,
+      user_id: userInfo.id,
+      username: userInfo.username,
+      name: userInfo.name
+    })
   }
 
   signOut = (event) => {
@@ -34,7 +39,8 @@ class App extends Component {
         <div>
           <Route path="/signup" render = {(props) => { return <UserSignUp handleLogin={this.handleLogin} {...props}/>}} />
           <Link to='/signup' > Link to sign up </Link>
-          <UserLogin handleLogin={this.handleLogin}/>
+          <Route path="/login" render = {(props) => { return <UserLogin handleLogin={this.handleLogin} {...props}/>}} />
+          <Link to='/login'> Log In </Link>
           <Route path="/trips" render = {(props) => {return <TripContainer />}} />
         </div>
       );

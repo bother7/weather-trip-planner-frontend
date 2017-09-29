@@ -27,7 +27,8 @@ export default class UserLogin extends React.Component {
       })
     }).then(response => response.json())
     .then((userInfo) => {
-      this.props.handleLogin(userInfo)
+      return this.props.handleLogin(userInfo)
+
       //does not need to take in an argument, but Joe insisted
     })
 
