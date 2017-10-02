@@ -19,6 +19,7 @@ class UpdateTripForm extends React.Component{
   state = {
     name: "",
     locations: false,
+    newlocation: "||||",
     location_size: 0
   }
 
@@ -38,7 +39,6 @@ class UpdateTripForm extends React.Component{
 
   handleUpdate = (event) => {
     event.preventDefault()
-    debugger
   }
 
   superHandler = (event) => {
@@ -57,14 +57,26 @@ class UpdateTripForm extends React.Component{
     this.setState({locations: [Object.values(arr[0]).join("||")]})
   }
 
+  superHandler2 = (event) => {
+    console.log("this is fine2", event.target.value, event.target.id)
+    var newloc = Object.assign( {},
+      {[`location_name_${this.state.location_size}`]:this.state.newlocation.split("||")[0],
+      [`start_date_${this.state.location_size}`]:this.state.newlocation.split("||")[1],
+      [`end_date_${this.state.location_size}`]:this.state.newlocation.split("||")[2]}
+    )
+    newloc[event.target.id] = event.target.value
+    console.log(Object.values(newloc).join("||"))
+    return this.setState({newlocation: Object.values(newloc).join("||")})
+  }
+
   render() {
-    console.log(this.state.locations)
+    // console.log(this.state.locations)
     return(
       <form onSubmit={this.handleUpdate}>
         {this.state.locations ? this.locationInputs() : null}
-        <br></br><input type="text" />
-        <input type="date" name="new_start_date" />
-        <input type="date" name="new_end_date" /><br></br>
+        <br></br><input type="text" id={`location_name_${this.state.location_size}`} onChange={this.superHandler2} value={this.state.newlocation.split("||")[0]}/>
+        <input type="date" name="new_start_date" id={`start_date_${this.state.location_size}`} onChange={this.superHandler2} value={this.state.newlocation.split("||")[1]}/>
+        <input type="date" name="new_end_date" id={`end_date_${this.state.location_size}`} onChange={this.superHandler2} value={this.state.newlocation.split("||")[2]}/><br></br>
         <input type="submit" value="Update Trip" />
       </form>
     )

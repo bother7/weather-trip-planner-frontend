@@ -39,7 +39,6 @@ export default class TripContainer extends React.Component {
           newLocation: this.state.newLocation,
           newTripStart: this.state.newTripStart,
           newTripEnd: this.state.newTripEnd
-
         })
       }).then(response => response.json())
       .then((tripInfo) => {
