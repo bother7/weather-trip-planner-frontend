@@ -5,6 +5,7 @@ import UserSignUp from './components/UserSignUp'
 import Nav from './components/Nav'
 import './App.css';
 import {Route, Link, Redirect, NavLink} from 'react-router-dom'
+import TripDetail from './components/TripDetail'
 
 class App extends Component {
   state = {
@@ -16,7 +17,7 @@ class App extends Component {
   }
 
   handleLogin = (userInfo) => {
-    console.log(this.state)
+    console.log("did this happen")
     this.setState({
       loggedIn: true,
       user_id: userInfo.id,
@@ -31,6 +32,7 @@ class App extends Component {
     .then((resp) => resp.json())
     .then((trips) => {this.setState({trips: trips})})
   }
+
   signOut = (event) => {
     event.preventDefault()
     localStorage.removeItem('user_id')
@@ -78,8 +80,16 @@ class App extends Component {
           <Route path="/signup" render = {(props) => { return <UserSignUp handleLogin={this.handleLogin} {...props}/>}} />
           <Route path="/login" render = {(props) => { return <UserLogin handleLogin={this.handleLogin} {...props}/>}} />
           <div className="marquee"><div><span>Welcome to Kenny strip planner</span></div></div>
-          <Route path="/trips" render = {(props) => {return <TripContainer {...props} loggedIn={this.state.loggedIn} handleTripSubmit={this.handleTripSubmit} trips={this.state.trips} fetchTrips={this.fetchTrips} />}} />
-        </div>
+          <Route exact path="/trips" render = {(props) => {return <TripContainer {...props} loggedIn={this.state.loggedIn} handleTripSubmit={this.handleTripSubmit} trips={this.state.trips} fetchTrips={this.fetchTrips} />}} />
+            <Route path="/trips/:id" render = {(tripProps) => {
+                const id = tripProps.match.params.id
+                console.log(this.state.trips)
+                const vacation = this.state.trips.find((kennytrip) => {return (kennytrip.id.toString() === id)})
+                console.log(id, vacation)
+                return (<TripDetail {...vacation} />)
+              }} />
+
+      </div>
       );
   }
 }

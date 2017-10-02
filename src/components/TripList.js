@@ -1,6 +1,7 @@
 import React from 'react'
 import Trip from './Trip'
 import {Route} from 'react-router-dom'
+import TripDetail from './TripDetail'
 
 const TripList = (props) => {
   const allTripsComponent = () => {
@@ -9,13 +10,10 @@ const TripList = (props) => {
     })
   }
   const allTripsLink= () => {
+    console.log(props.allTrips)
     return props.allTrips.map((trip) => {
       console.log("here happens")
-      return <Route path="/trips/:id" render={(routerProps) => {
-          console.log("these are routerprops:", routerProps);
-          const id = routerProps.match.params.id
-          return (<Trip key={id} {...trip} />)
-        }} />
+      return (<Route path="/trips/:id" component={TripDetail} />)
     })
   }
   return (

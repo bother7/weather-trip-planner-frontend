@@ -29,11 +29,12 @@ export default class UserLogin extends React.Component {
     .then((userInfo) => {
       localStorage.setItem('user_id', userInfo.id)
       this.props.handleLogin(userInfo)
+      this.props.history.replace('/')
       return this.props.history.push('/trips')
       //does not need to take in an argument, but Joe insisted
     })
   }
-  
+
   render(){
     return (<div><form onSubmit={this.handleSubmit}>
       <label>

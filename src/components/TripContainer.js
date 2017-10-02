@@ -1,7 +1,7 @@
 import React from 'react'
 import TripList from './TripList'
 import TripForm from './TripForm'
-import Moment from 'react-moment'
+import TripDetail from './TripDetail'
 
 export default class TripContainer extends React.Component {
   state = {
@@ -63,6 +63,7 @@ export default class TripContainer extends React.Component {
     return (<div>
       <TripForm handleTripSubmit={this.handleTripSubmit} changeTripName={this.changeTripName} newTripName={this.state.newTripName} changeLocation={this.changeLocation} location={this.state.location} changeTripStart={this.changeTripStart} changeTripEnd={this.changeTripEnd}/>
         <TripList allTrips={this.props.trips}/>
+        
       </div>)
   }
 }
