@@ -1,7 +1,8 @@
 import React from 'react';
 
 const Trip = (props) => {
-  return (<div> {props.name} </div>)
+  console.log(props);
+  return (<div> {props.name} {props.locations} </div>)
 }
 
 export default Trip

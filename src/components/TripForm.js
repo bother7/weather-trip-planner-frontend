@@ -12,11 +12,12 @@ const TripForm = (props) => {
     </label>
     <label>
     Start Date:
-    <input type="date" name="start_date"/>
+    <input type="date" name="start_date" onChange={props.changeTripStart}/>
+
     </label>
     <label>
     End Date:
-    <input type="date" name="end_date"/>
+    <input type="date" name="end_date" onChange={props.changeTripEnd}/>
     </label>
     <input type="submit" value="Submit" />
   </form>)

@@ -1,6 +1,7 @@
 import React from 'react'
 import TripList from './TripList'
 import TripForm from './TripForm'
+import Moment from 'react-moment'
 
 export default class TripContainer extends React.Component {
   state = {
@@ -9,7 +10,7 @@ export default class TripContainer extends React.Component {
     newTripStart: "",
     newTripEnd: ""
   }
-  
+
   changeTripName = (event) => {
     this.setState({newTripName: event.target.value})
     console.log("change trip name")
@@ -22,11 +23,33 @@ export default class TripContainer extends React.Component {
     this.setState({newTripStart: event.target.value})
     console.log("set start date")
   }
-  changeEndStart = (event) => {
-    this.setState({newTripStart: event.target.value})
+  changeTripEnd = (event) => {
+    this.setState({newTripEnd: event.target.value})
     console.log("set end date")
   }
 
+  handleTripSubmit = (event) => {
+    event.preventDefault()
+      fetch("http://localhost:3000/api/v1/user_trips", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: this.state.newTripName,
+          user_id: localStorage.getItem("user_id"),
+          newLocation: this.state.newLocation,
+          newTripStart: this.state.newTripStart,
+          newTripEnd: this.state.newTripEnd
+
+        })
+      }).then(response => response.json())
+      .then((tripInfo) => {
+          this.props.fetchTrips()
+        })
+
+
+  }
 
   // shouldComponentUpdate(nextProps, nextState) {
   //   // debugger

@@ -50,35 +50,35 @@ class App extends Component {
     }
   }
 
-  handleTripSubmit = (event) => {
-    event.preventDefault()
-      fetch("http://localhost:3000/api/v1/user_trips", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: this.state.newTripName,
-          user_id: localStorage.getItem("user_id")
-        })
-      }).then(response => response.json())
-      .then((tripInfo) => {
-        this.setState({
-          trips: [...this.state.trips, tripInfo]
-        })
-      }).then(something => console.log(this.state))
-    console.log(this.state.newTripName, this.state.newLocation)
-  }
+  // handleTripSubmit = (event) => {
+  //   event.preventDefault()
+  //     fetch("http://localhost:3000/api/v1/user_trips", {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       },
+  //       body: JSON.stringify({
+  //         name: this.state.newTripName,
+  //         user_id: localStorage.getItem("user_id")
+  //
+  //       })
+  //     }).then(response => response.json())
+  //     .then((tripInfo) => {
+  //       this.setState({
+  //         trips: [...this.state.trips, tripInfo]
+  //       })
+  //     }).then(something => console.log(this.state))
+  //
+  // }
 
   render() {
-     console.log(this.state.trips)
       return (
         <div>
           <Route path="/" render = {(props) => { return <Nav {...props} signOut={this.signOut}/>}}/>
           <Route path="/signup" render = {(props) => { return <UserSignUp handleLogin={this.handleLogin} {...props}/>}} />
           <Route path="/login" render = {(props) => { return <UserLogin handleLogin={this.handleLogin} {...props}/>}} />
           <div className="marquee"><div><span>Welcome to Kenny strip planner</span></div></div>
-          <Route path="/trips" render = {(props) => {return <TripContainer {...props} loggedIn={this.state.loggedIn} handleTripSubmit={this.handleTripSubmit} trips={this.state.trips}/>}} />
+          <Route path="/trips" render = {(props) => {return <TripContainer {...props} loggedIn={this.state.loggedIn} handleTripSubmit={this.handleTripSubmit} trips={this.state.trips} fetchTrips={this.fetchTrips} />}} />
         </div>
       );
   }
