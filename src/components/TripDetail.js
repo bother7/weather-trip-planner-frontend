@@ -1,4 +1,5 @@
 import React from 'react'
+import ForecastDetail from './ForecastDetail'
 
 export default class TripDetail extends React.Component {
   state = {
@@ -25,7 +26,14 @@ export default class TripDetail extends React.Component {
   render() {
     // debugger
     console.log("detail worked", this.props)
-    return (<div>happy kennyday {this.props.name} {this.props.locations} {(this.state.forecastArr.length !== 0) ? this.state.forecastArr[0].mintemp_c : null}</div>)
+    return (<div>Name: {this.props.name}
+      Location: {this.props.locations}
+      {(this.state.forecastArr.length !== 0) ?
+        this.state.forecastArr.map((forecast) => {
+          return <ForecastDetail {...forecast} />
+        }):
+        null}
+    </div>)
   }
 
 }

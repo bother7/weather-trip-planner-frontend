@@ -4,7 +4,6 @@ import {NavLink} from 'react-router-dom'
 class Nav extends React.Component {
 
   render() {
-    console.log(this.props)
     return (
       <div className="ui secondary menu">
         <NavLink activeClassName="active" className="item" to="/login">Login</NavLink>

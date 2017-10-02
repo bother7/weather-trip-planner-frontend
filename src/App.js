@@ -9,7 +9,7 @@ import TripDetail from './components/TripDetail'
 
 class App extends Component {
   state = {
-    loggedIn: false,
+    loggedIn: (localStorage.getItem('user_id') !== "") ? true : false,
     user_id: localStorage.getItem('user_id'),
     username: null,
     name: null,
@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   handleLogin = (userInfo) => {
-    console.log("did this happen")
     this.setState({
       loggedIn: true,
       user_id: userInfo.id,
@@ -52,26 +51,22 @@ class App extends Component {
     }
   }
 
-  // handleTripSubmit = (event) => {
-  //   event.preventDefault()
-  //     fetch("http://localhost:3000/api/v1/user_trips", {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       body: JSON.stringify({
-  //         name: this.state.newTripName,
-  //         user_id: localStorage.getItem("user_id")
-  //
-  //       })
-  //     }).then(response => response.json())
-  //     .then((tripInfo) => {
-  //       this.setState({
-  //         trips: [...this.state.trips, tripInfo]
-  //       })
-  //     }).then(something => console.log(this.state))
-  //
-  // }
+  removeTrip = (event) => {
+    fetch(`http://localhost:3000/api/v1/user_trips/${event.target.dataset["tripId"]}`, {
+      method: 'DELETE'
+    }).then(response => {
+      alert('Delete successful')
+      this.fetchTrips()
+    })
+  }
+
+  updateTrip = (event) => {
+    fetch(`http://localhost:3000/api/v1/user_trips/${event.target.id}`, {
+      method: 'PATCH'
+    }).then(response => {
+      console.log('we got this far');
+    })
+  }
 
   render() {
       return (
@@ -80,7 +75,7 @@ class App extends Component {
           <Route path="/signup" render = {(props) => { return <UserSignUp handleLogin={this.handleLogin} {...props}/>}} />
           <Route path="/login" render = {(props) => { return <UserLogin handleLogin={this.handleLogin} {...props}/>}} />
           <div className="marquee"><div><span>Welcome to Kenny strip planner</span></div></div>
-          <Route path="/trips" render = {(props) => {return <TripContainer {...props} loggedIn={this.state.loggedIn} handleTripSubmit={this.handleTripSubmit} trips={this.state.trips} fetchTrips={this.fetchTrips} />}} />
+          <Route path="/trips" render = {(props) => {return <TripContainer {...props} loggedIn={this.state.loggedIn} handleTripSubmit={this.handleTripSubmit} trips={this.state.trips} fetchTrips={this.fetchTrips} removeTrip={this.removeTrip} />}} />
       </div>
       );
   }

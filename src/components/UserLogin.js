@@ -8,7 +8,6 @@ export default class UserLogin extends React.Component {
   }
 
   changeName = (event) => {
-    console.log("ha")
     this.setState({username: event.target.value})
   }
   changePassword = (event) => {
@@ -25,12 +24,17 @@ export default class UserLogin extends React.Component {
         username: this.state.username,
         password: this.state.password
       })
-    }).then(response => response.json())
+    })
+    .then(response => response.json())
     .then((userInfo) => {
-      localStorage.setItem('user_id', userInfo.id)
-      this.props.handleLogin(userInfo)
-      this.props.history.replace('/')
-      return this.props.history.push('/trips')
+      if(userInfo.code !== 401) {
+        localStorage.setItem('user_id', userInfo.id)
+        this.props.handleLogin(userInfo)
+        return this.props.history.push('/trips')
+      } else {
+        alert("Log in failed")
+        this.props.history.push('/')
+      }
       //does not need to take in an argument, but Joe insisted
     })
   }
