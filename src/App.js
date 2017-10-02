@@ -80,15 +80,7 @@ class App extends Component {
           <Route path="/signup" render = {(props) => { return <UserSignUp handleLogin={this.handleLogin} {...props}/>}} />
           <Route path="/login" render = {(props) => { return <UserLogin handleLogin={this.handleLogin} {...props}/>}} />
           <div className="marquee"><div><span>Welcome to Kenny strip planner</span></div></div>
-          <Route exact path="/trips" render = {(props) => {return <TripContainer {...props} loggedIn={this.state.loggedIn} handleTripSubmit={this.handleTripSubmit} trips={this.state.trips} fetchTrips={this.fetchTrips} />}} />
-            <Route path="/trips/:id" render = {(tripProps) => {
-                const id = tripProps.match.params.id
-                console.log(this.state.trips)
-                const vacation = this.state.trips.find((kennytrip) => {return (kennytrip.id.toString() === id)})
-                console.log(id, vacation)
-                return (<TripDetail {...vacation} />)
-              }} />
-
+          <Route path="/trips" render = {(props) => {return <TripContainer {...props} loggedIn={this.state.loggedIn} handleTripSubmit={this.handleTripSubmit} trips={this.state.trips} fetchTrips={this.fetchTrips} />}} />
       </div>
       );
   }
