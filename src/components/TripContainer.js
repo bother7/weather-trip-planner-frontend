@@ -16,6 +16,9 @@ export default class TripContainer extends React.Component {
   changeTripName = (event) => {
     this.setState({newTripName: event.target.value})
   }
+  componentDidMount(){
+    this.props.fetchTrips()
+  }
   changeLocation = (event) => {
     this.setState({newLocation: event.target.value})
   }
@@ -49,7 +52,8 @@ export default class TripContainer extends React.Component {
   }
 
   render() {
-    return (<div>
+    return (
+      <div className="wrapper">
       <TripForm handleTripSubmit={this.handleTripSubmit} changeTripName={this.changeTripName} newTripName={this.state.newTripName} changeLocation={this.changeLocation} location={this.state.location} changeTripStart={this.changeTripStart} changeTripEnd={this.changeTripEnd}/>
         <Route exact path = "/trips" render = {(props) => {return <TripList removeTrip={this.props.removeTrip} allTrips={this.props.trips}/>}} />
         <Route exact path="/trips/:id" render = {(tripProps) => {
@@ -62,7 +66,7 @@ export default class TripContainer extends React.Component {
             const vacation = this.props.trips.find((joetrip) => {return (joetrip.id.toString() === id)})
             return (<UpdateTripForm {...vacation} />)
           }} />
-
-      </div>)
+          </div>
+)
   }
 }

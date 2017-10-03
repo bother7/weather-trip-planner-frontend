@@ -8,6 +8,7 @@ import {Route, Link, Redirect, NavLink} from 'react-router-dom'
 import TripDetail from './components/TripDetail'
 
 class App extends Component {
+
   state = {
     loggedIn: (localStorage.getItem('user_id') !== "") ? true : false,
     user_id: localStorage.getItem('user_id'),
@@ -29,11 +30,11 @@ class App extends Component {
   fetchTrips = () => {
     fetch(`http://localhost:3000/api/v1/tripwithuser/${localStorage.getItem('user_id')}`)
     .then((resp) => resp.json())
-    .then((trips) => {this.setState({trips: trips})})
+    .then((kennytrip) => {
+      return this.setState({trips: kennytrip, name:kennytrip["user_name"]})})
   }
 
   signOut = (event) => {
-    event.preventDefault()
     localStorage.removeItem('user_id')
     //replace with jwt token later when we have jwt tokens, as of now we don't have jwt tokens in the "tim was here" -commit.
     this.setState({
@@ -69,9 +70,10 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.state.trips)
       return (
         <div>
-          <Route path="/" render = {(props) => { return <Nav {...props} signOut={this.signOut}/>}}/>
+          <Route path="/" render = {(props) => { return <Nav {...props} username={this.state.username} signOut={this.signOut}/>}}/>
           <div className="wrapper">
             <Route path="/signup" render = {(props) => { return <UserSignUp handleLogin={this.handleLogin} {...props}/>}} />
             <Route path="/login" render = {(props) => { return <UserLogin handleLogin={this.handleLogin} {...props}/>}} />

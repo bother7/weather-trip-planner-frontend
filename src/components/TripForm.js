@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TripForm = (props) => {
-  return (<form onSubmit={props.handleTripSubmit}>
+  return (<form className="formRight" onSubmit={props.handleTripSubmit}>
     <label>
     Name of Your Trip:
     <input type="text" name="name" onChange={props.changeTripName} value={props.newTripName}/>

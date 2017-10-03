@@ -5,13 +5,15 @@ import TripDetail from './TripDetail'
 
 const TripList = (props) => {
   const allTripsComponent = () => {
+    if (props.allTrips) {
     return props.allTrips.map((trip) => {
       return (<Trip removeTrip={props.removeTrip} key={trip.id} {...trip} />)
     })
+    }
   }
 
   return (
-    <div>
+    <div className="trips">
       {allTripsComponent()}
     </div>
   )

@@ -26,11 +26,14 @@ export default class TripDetail extends React.Component {
   render() {
     // debugger
     console.log("detail worked", this.props)
-    return (<div>Name: {this.props.name}
-      Location: {this.props.locations}
+    return (<div className="bigleft">
+      <div className="tripinfo">
+        Name: {this.props.name} <br/>
+        Location: {this.props.locations}
+      </div>
       {(this.state.forecastArr.length !== 0) ?
-        this.state.forecastArr.map((forecast) => {
-          return <ForecastDetail {...forecast} />
+        this.state.forecastArr.map((forecast, index) => {
+          return <ForecastDetail {...forecast} index={index}/>
         }):
         null}
     </div>)
