@@ -39,6 +39,16 @@ class UpdateTripForm extends React.Component{
 
   handleUpdate = (event) => {
     event.preventDefault()
+    fetch(`http://localhost:3000/api/v1/user_trips/${this.props.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        locations: this.state.locations,
+        newlocation: this.state.newlocation
+      })
+    }).then(response => response.json())
   }
 
   superHandler = (event) => {
