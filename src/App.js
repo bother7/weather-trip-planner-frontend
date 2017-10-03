@@ -72,10 +72,11 @@ class App extends Component {
       return (
         <div>
           <Route path="/" render = {(props) => { return <Nav {...props} signOut={this.signOut}/>}}/>
-          <Route path="/signup" render = {(props) => { return <UserSignUp handleLogin={this.handleLogin} {...props}/>}} />
-          <Route path="/login" render = {(props) => { return <UserLogin handleLogin={this.handleLogin} {...props}/>}} />
-          <div className="marquee"><div><span>Welcome to Kenny strip planner</span></div></div>
-          <Route path="/trips" render = {(props) => {return <TripContainer {...props} loggedIn={this.state.loggedIn} handleTripSubmit={this.handleTripSubmit} trips={this.state.trips} fetchTrips={this.fetchTrips} removeTrip={this.removeTrip} />}} />
+          <div className="wrapper">
+            <Route path="/signup" render = {(props) => { return <UserSignUp handleLogin={this.handleLogin} {...props}/>}} />
+            <Route path="/login" render = {(props) => { return <UserLogin handleLogin={this.handleLogin} {...props}/>}} />
+            <Route path="/trips" render = {(props) => {return <TripContainer {...props} loggedIn={this.state.loggedIn} handleTripSubmit={this.handleTripSubmit} trips={this.state.trips} fetchTrips={this.fetchTrips} removeTrip={this.removeTrip} />}} />
+          </div>
       </div>
       );
   }

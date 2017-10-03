@@ -40,16 +40,16 @@ export default class UserLogin extends React.Component {
   }
 
   render(){
-    return (<div><form onSubmit={this.handleSubmit}>
-      <label>
+    return (<div className="form"><form onSubmit={this.handleSubmit}>
+      <label className="label">
       Username:
-      <input type="text" name="name" onChange={this.changeName} value={this.state.username}/>
       </label>
-      <label>
+      <input className="inputField" type="text" name="name" onChange={this.changeName} value={this.state.username}/>
+      <label className="label">
       Password:
-      <input type="password" name="name" onChange={this.changePassword} value={this.state.password}/>
       </label>
-      <input type="submit" value="Submit" />
+      <input className="inputField" type="password" name="name" onChange={this.changePassword} value={this.state.password}/>
+      <input className="fsSubmitButton" type="submit" value="Submit" />
       </form></div>)
   }
 }

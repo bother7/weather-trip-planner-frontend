@@ -54,24 +54,24 @@ export default class UserSignUp extends React.Component {
     console.log(this.state.username, this.state.password)
   }
   render(){
-    return (<div><form onSubmit={this.handleSubmit}>
-      <label>
+    return (<div className="form"><form onSubmit={this.handleSubmit}>
+      <label className="label">
         Name:
+      </label>
         <input type="text" name="name" onChange={this.changeName} value={this.state.name}/>
-      </label>
-      <label>
+      <label className="label">
         Username:
+      </label>
         <input type="text" name="name" onChange={this.changeUserName} value={this.state.username}/>
-      </label>
-      <label>
+      <label className="label">
         Password:
+      </label>
         <input type="password" name="name" onChange={this.changePassword} value={this.state.password}/>
-      </label>
-      <label>
+      <label className="label">
         Confirm Password:
-        <input type="password" name="name" onChange={this.changeConfirmationPassword} value={this.state.confirmPassword}/>
       </label>
-        <input type="submit" value="Submit" />
+        <input type="password" name="name" onChange={this.changeConfirmationPassword} value={this.state.confirmPassword}/>
+        <input className="fsSubmitButton" type="submit" value="Submit" />
       </form></div>)
   }
 }

@@ -5,7 +5,7 @@ class Nav extends React.Component {
 
   render() {
     return (
-      <div className="ui secondary menu">
+      <div className="navbar">
         <NavLink activeClassName="active" className="item" to="/login">Login</NavLink>
         <NavLink activeClassName="active" className="item" to="/signup">Signup</NavLink>
         <NavLink className="item right" to="/" onClick={this.props.signOut}>Logout</NavLink>

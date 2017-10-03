@@ -1,4 +1,65 @@
-.App {
+.navbar {
+   background-color: #86c6f4;
+   overflow: hidden;
+   box-shadow: 5px 5px 5px #888888;
+
+}
+.navbar a {
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.wrapper {
+  padding: 2%;
+  /*padding-left: 2%;
+  padding-right: 2%;*/
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 80px 80px auto 80px 80px;
+  grid-gap: 10px;
+  grid-template-rows: 25% 100px 100px auto;
+  background: -webkit-gradient(linear, 56% 3%, 46% 74%, from(#C5D8F2 ), to(#E6E6E6 ), color-stop(.5,#BADAFA ))
+}
+
+.form {
+  padding: 2%;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  background-color: rgba(20, 60, 89, 0.5);
+  border-radius: 5px;
+  box-shadow: 3px 3px 3px #888888;
+}
+
+.label {
+  color: #fff;
+}
+
+.inputField {
+  width: 90%
+}
+
+.fsSubmitButton {
+  padding: 5px 8px 5px;
+  font-size: 13px;
+  background-color: #57d6c7;
+  color: #ffffff;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: 1px solid #57D6C7;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}
+
+/*.App {
   text-align: center;
 }
 
@@ -57,4 +118,4 @@
 @keyframes marquee {
   0% { left: 100%; }
   100% { left: -100%; }
-}
+}*/
