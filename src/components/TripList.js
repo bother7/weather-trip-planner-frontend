@@ -6,14 +6,14 @@ import TripDetail from './TripDetail'
 const TripList = (props) => {
   const allTripsComponent = () => {
     if (props.allTrips) {
-    return props.allTrips.map((trip) => {
-      return (<Trip removeTrip={props.removeTrip} key={trip.id} {...trip} />)
+    return props.allTrips.map((trip, index) => {
+      return (<Trip removeTrip={props.removeTrip} key={trip.id} index={index} {...trip} />)
     })
     }
   }
 
   return (
-    <div className="trips">
+    <div className="bigleft">
       {allTripsComponent()}
     </div>
   )

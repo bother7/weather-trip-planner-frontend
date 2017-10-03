@@ -104,7 +104,7 @@ class UpdateTripForm extends React.Component{
         <br></br><input type="text" id={`location_name_${this.state.location_size}`} onChange={this.superHandler2} value={this.state.newlocation.split("||")[0]}/>
         <input type="date" name="new_start_date" id={`start_date_${this.state.location_size}`} onChange={this.superHandler2} value={this.state.newlocation.split("||")[1]}/>
         <input type="date" name="new_end_date" id={`end_date_${this.state.location_size}`} onChange={this.superHandler2} value={this.state.newlocation.split("||")[2]}/><br></br>
-        <input type="submit" value="Update Trip" />
+        <input className="fsGeneralButton" type="submit" value="Update Trip" />
       </form>
     )
   }

@@ -8,7 +8,7 @@ class Nav extends React.Component {
       return (
       <div className="navbar">
 
-      <a style={{float:'left'}}> Welcome {this.props.username}, to Kenny sTrip Planner </a>
+      <a style={{float:'left'}}> Welcome {this.props.name}, to Kenny sTrip Planner </a>
         <NavLink to="/" onClick={this.props.signOut}>Logout</NavLink>
         <NavLink to="/trips">Trips</NavLink>
       </div>

@@ -3,6 +3,7 @@ import TripContainer from './components/TripContainer'
 import UserLogin from './components/UserLogin'
 import UserSignUp from './components/UserSignUp'
 import Nav from './components/Nav'
+import NotFound from './components/NotFound'
 import './App.css';
 import {Route, Link, Redirect, NavLink} from 'react-router-dom'
 import TripDetail from './components/TripDetail'
@@ -31,7 +32,11 @@ class App extends Component {
     fetch(`http://localhost:3000/api/v1/tripwithuser/${localStorage.getItem('user_id')}`)
     .then((resp) => resp.json())
     .then((kennytrip) => {
-      return this.setState({trips: kennytrip, name:kennytrip["user_name"]})})
+      return this.setState({
+        trips: kennytrip,
+        name: kennytrip[0]["user_name"]
+      })
+    })
   }
 
   signOut = (event) => {
@@ -70,11 +75,12 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state.trips)
+    console.log(this.state)
       return (
         <div>
-          <Route path="/" render = {(props) => { return <Nav {...props} username={this.state.username} signOut={this.signOut}/>}}/>
+          <Route path="/" render = {(props) => { return <Nav {...props} name={this.state.name} signOut={this.signOut}/>}}/>
           <div className="wrapper">
+            <Route path="/404" component={NotFound} />
             <Route path="/signup" render = {(props) => { return <UserSignUp handleLogin={this.handleLogin} {...props}/>}} />
             <Route path="/login" render = {(props) => { return <UserLogin handleLogin={this.handleLogin} {...props}/>}} />
             <Route path="/trips" render = {(props) => {return <TripContainer {...props} loggedIn={this.state.loggedIn} handleTripSubmit={this.handleTripSubmit} trips={this.state.trips} fetchTrips={this.fetchTrips} removeTrip={this.removeTrip} />}} />

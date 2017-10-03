@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ForecastDetail = (props) => {
-  console.log(props)
   const { maxtemp_f, totalprecip_in, condition, maxwind_mph } = props
   const cssGrid = {
     1:"one",

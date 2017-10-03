@@ -59,7 +59,7 @@ export default class TripContainer extends React.Component {
         <Route exact path="/trips/:id" render = {(tripProps) => {
             const id = tripProps.match.params.id
             const vacation = this.props.trips.find((kennytrip) => {return (kennytrip.id.toString() === id)})
-            return (<TripDetail {...vacation} />)
+            return (<TripDetail {...vacation} {...tripProps} />)
           }} />
         <Route exact path="/trips/:id/edit" render = {(tripProps) => {
             const id = tripProps.match.params.id

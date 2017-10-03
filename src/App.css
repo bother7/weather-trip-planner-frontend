@@ -60,7 +60,7 @@
   padding: 2%;
   background-color: rgba(20, 60, 89, 0.5);
   border-radius: 5px;
-  box-shadow: 3px 3px 3px #888888;
+
   color: #f2f2f2;
   text-align: center;
 }
@@ -113,14 +113,35 @@
   -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 }
 
+.fsGeneralButton {
+  margin-top: 4%;
+  padding: 5px 13px 5px;
+  font-size: 10px;
+
+  background-color: rgb(20, 60, 89);
+  color: #ffffff;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border: rgb(20, 60, 89);
+  cursor: pointer;
+
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 5s linear;
+  height: 200px;
+}
 /*.App {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
+
 
 .App-header {
   background-color: #222;
@@ -137,10 +158,7 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
+
 
 
 .marquee {

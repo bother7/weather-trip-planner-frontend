@@ -19,7 +19,7 @@ const TripForm = (props) => {
     End Date:
     <input type="date" name="end_date" onChange={props.changeTripEnd}/>
     </label>
-    <input type="submit" value="Submit" />
+    <input className="fsSubmitButton" type="submit" value="Submit" />
   </form>)
 
 }
