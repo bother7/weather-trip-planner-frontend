@@ -49,6 +49,15 @@ class UpdateTripForm extends React.Component{
         newlocation: this.state.newlocation
       })
     }).then(response => response.json())
+    .then((trips) => {
+      console.log(trips);
+      this.setState({
+        locations: (trips.locations.includes(" -- ") ?
+        trips.locations.split(" -- ") :
+        [trips.locations]
+      )
+      })
+    })
   }
 
   superHandler = (event) => {
@@ -63,8 +72,16 @@ class UpdateTripForm extends React.Component{
         [endDate]:location.split("||")[2]}
       )
     })
-    arr[0][event.target.id] = event.target.value
-    this.setState({locations: [Object.values(arr[0]).join("||")]})
+    const merged = Object.assign(...arr)
+    merged[event.target.id] = event.target.value
+    const ourkeys = Object.keys(merged)
+    const newArr = ourkeys.map((one) => {return {[one]:merged[one]}})
+    var mediumArr = []
+    for (var i=0; i<newArr.length; i+=3) {
+      mediumArr.push(Object.assign(newArr[i], newArr[i+1], newArr[i+2]))
+    }
+    var finalArr = mediumArr.map((item) => {return Object.values(item).join("||")})
+    this.setState({locations: finalArr})
   }
 
   superHandler2 = (event) => {
