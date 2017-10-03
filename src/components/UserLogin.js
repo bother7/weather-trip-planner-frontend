@@ -40,7 +40,7 @@ export default class UserLogin extends React.Component {
   }
 
   render(){
-    return (<div className="form"><form onSubmit={this.handleSubmit}>
+    return (<form className="form" onSubmit={this.handleSubmit}>
       <label className="label">
       Username:
       </label>
@@ -50,6 +50,6 @@ export default class UserLogin extends React.Component {
       </label>
       <input className="inputField" type="password" name="name" onChange={this.changePassword} value={this.state.password}/>
       <input className="fsSubmitButton" type="submit" value="Submit" />
-      </form></div>)
+      </form>)
   }
 }
