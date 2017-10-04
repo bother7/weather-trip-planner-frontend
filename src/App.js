@@ -32,9 +32,10 @@ class App extends Component {
     fetch(`http://localhost:3000/api/v1/tripwithuser/${localStorage.getItem('user_id')}`)
     .then((resp) => resp.json())
     .then((kennytrip) => {
+
       return this.setState({
         trips: kennytrip,
-        name: kennytrip[0]["user_name"]
+        name: (kennytrip[0] ? kennytrip[0]["user_name"] : null)
       })
     })
   }

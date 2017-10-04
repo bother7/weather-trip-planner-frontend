@@ -37,18 +37,19 @@ export default class TripDetail extends React.Component {
     return locAndDate.split("||")
   })
 
-  // map over locationAndDates and possibly make a new component 
+  // map over locationAndDates and possibly make a new component
 
   render() {
+    console.log(this.allLocationAndDates);
     console.log(this.locationAndDates);
 
     return (<div className="bigleft">
       <div className="tripinfo">
         Name: {this.props.name} <br/>
 
-      Location: {this.props.locations ? this.props.locations.split("||")[0] : null } <br/>
-      Start Date: {this.props.locations ? this.props.locations.split("||")[1] :null } <br/>
-      End Date: {this.props.locations ? this.props.locations.split("||")[2] : null } <br/>
+      Location: {this.locationAndDates ? this.locationAndDates[0][0] : null } <br/>
+      Start Date: {this.locationAndDates ? this.locationAndDates[0][1] :null } <br/>
+      End Date: {this.locationAndDates ? this.locationAndDates[0][2] : null } <br/>
       </div>
       {(this.state.forecastArr.length !== 0 ) ?
         this.state.forecastArr.map((forecast, index) => {
