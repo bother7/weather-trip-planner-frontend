@@ -40,23 +40,22 @@ export default class TripDetail extends React.Component {
   // map over locationAndDates and possibly make a new component
 
   render() {
-    console.log(this.allLocationAndDates);
-    console.log(this.locationAndDates);
 
-    return (<div className="bigleft">
-      <div className="tripinfo">
-        Name: {this.props.name} <br/>
+    return (
+      <div className="bigleft">
+        <div className="tripinfo">
+          Name: {this.props.name} <br/>
 
-      Location: {this.locationAndDates ? this.locationAndDates[0][0] : null } <br/>
-      Start Date: {this.locationAndDates ? this.locationAndDates[0][1] :null } <br/>
-      End Date: {this.locationAndDates ? this.locationAndDates[0][2] : null } <br/>
+        Location: {this.locationAndDates ? this.locationAndDates[0][0] : null } <br/>
+        Start Date: {this.locationAndDates ? this.locationAndDates[0][1] :null } <br/>
+        End Date: {this.locationAndDates ? this.locationAndDates[0][2] : null } <br/>
+        </div>
+        {(this.state.forecastArr.length !== 0 ) ?
+          this.state.forecastArr.map((forecast, index) => {
+            return <ForecastDetail {...forecast} index={index}/>
+          }):
+          null}
       </div>
-      {(this.state.forecastArr.length !== 0 ) ?
-        this.state.forecastArr.map((forecast, index) => {
-          return <ForecastDetail {...forecast} index={index}/>
-        }):
-        null}
-    </div>)
+    )
   }
-
 }
