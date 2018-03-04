@@ -97,7 +97,6 @@ class UpdateTripForm extends React.Component{
   }
 
   render() {
-    // console.log(this.state.locations)
     return(
       <form onSubmit={this.handleUpdate}>
         {this.state.locations ? this.locationInputs() : null}
