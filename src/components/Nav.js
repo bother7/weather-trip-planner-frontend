@@ -16,7 +16,7 @@ class Nav extends React.Component {
     } else {
     return (
         <div className="navbar">
-        <a style={{float:'left'}}>Welcome to Kenny sTrip Planner </a>
+        <a style={{float:'left'}}>Welcome to JK Planner </a>
           <NavLink activeClassName="active" className="item" to="/login">Login</NavLink>
           <NavLink activeClassName="active" className="item" to="/signup">Signup</NavLink>
         </div>
